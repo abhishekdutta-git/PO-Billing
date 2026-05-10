@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Billing Software for Panorama Opticals — Generate professional invoices for medical and optical items.">
+    <title>Panorama Opticals — Billing Software</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- MAIN APP -->
+    <div class="app-wrapper" id="app-wrapper">
+
+        <!-- Navbar -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-brand"><span class="nav-icon">👓</span><span class="nav-title">PANORAMA OPTICALS</span></div>
+            <div class="nav-links">
+                <button class="nav-btn active" id="nav-create-btn" onclick="showView('create')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> New Bill</button>
+                <button class="nav-btn" id="nav-orders-btn" onclick="showView('orders')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Orders</button>
+                <button class="nav-btn" id="nav-customers-btn" onclick="showView('customers')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg> Customers</button>
+                <button class="nav-btn" id="nav-history-btn" onclick="showView('history')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="10"/></svg> History</button>
+                <button class="nav-btn" id="nav-inventory-btn" onclick="showView('inventory')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg> Inventory</button>
+                <button class="nav-btn" id="nav-database-btn" onclick="showView('database')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> Database</button>
+                <button class="nav-btn nav-btn-theme" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme"><svg id="theme-icon-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg><svg id="theme-icon-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button>
+            </div>
+        </nav>
+
+        <!-- ═══ CREATE BILL ═══ -->
+        <main class="container" id="create-view">
+            <header class="page-header"><h1>Create New Invoice</h1><p class="subtitle">Generate professional bills for medical & optical items</p></header>
+            <form id="bill-form" onsubmit="return false;">
+                <div class="controls-row">
+                    <div class="card control-card">
+                        <label class="card-label">Bill Category</label>
+                        <div class="category-toggle">
+                            <button type="button" class="cat-btn active medical-active" id="cat-medical" onclick="setCategory('medical')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14v4M10 16h4"/><rect x="3" y="4" width="18" height="18" rx="2"/></svg> Medical</button>
+                            <button type="button" class="cat-btn" id="cat-optical" onclick="setCategory('optical')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="15" r="4"/><circle cx="18" cy="15" r="4"/><path d="M10 15h4"/></svg> Optical</button>
+                        </div>
+                    </div>
+                    <div class="card control-card">
+                        <label class="card-label">GST Invoice</label>
+                        <div class="gst-toggle-wrapper">
+                            <label class="toggle-switch"><input type="checkbox" id="gst-toggle" onchange="toggleGST()"><span class="toggle-slider"></span></label>
+                            <div class="gst-info"><span class="gst-status" id="gst-status">GST: OFF</span><span class="gst-detail" id="gst-detail">Bill from PANORAMA OPTICALS</span></div>
+                        </div>
+                    </div>
+                    <div class="card control-card">
+                        <label class="card-label">Invoice Info</label>
+                        <div class="bill-info">
+                            <div class="info-row"><span class="info-label">Bill No:</span><span class="info-value" id="bill-id">—</span></div>
+                            <div class="info-row"><span class="info-label">Date:</span><input type="date" id="bill-date" class="date-input"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card"><h2 class="card-heading">Customer Details</h2>
+                    <div class="customer-grid">
+                        <div class="form-group"><label for="cust-name">Customer Name <span class="req">*</span></label><div class="ac-wrap"><input type="text" id="cust-name" placeholder="Enter customer name" required></div></div>
+                        <div class="form-group"><label for="cust-phone">Phone Number</label><input type="tel" id="cust-phone" placeholder="Enter phone number"></div>
+                        <div class="form-group"><label for="cust-address">Address</label><input type="text" id="cust-address" placeholder="Enter customer address"></div>
+                        <div class="form-group"><label for="cust-doctor">Referred By (Dr.)</label><input type="text" id="cust-doctor" placeholder="Enter doctor's name"></div>
+                    </div>
+                </div>
+
+                <!-- Eye Prescription (optical only) -->
+                <div class="card hidden" id="rx-card">
+                    <h2 class="card-heading">Eye Prescription</h2>
+                    <div class="rx-grid">
+                        <div class="rx-label">Right Eye (OD)</div>
+                        <div class="form-group"><label>SPH</label><input type="text" id="rx-r-sph" placeholder="e.g. -2.50"></div>
+                        <div class="form-group"><label>CYL</label><input type="text" id="rx-r-cyl" placeholder="e.g. -0.75"></div>
+                        <div class="form-group"><label>AXIS</label><input type="text" id="rx-r-axis" placeholder="e.g. 180"></div>
+                        <div class="form-group"><label>ADD</label><input type="text" id="rx-r-add" placeholder="e.g. +1.00"></div>
+                        <div class="rx-label">Left Eye (OS)</div>
+                        <div class="form-group"><label>SPH</label><input type="text" id="rx-l-sph" placeholder="e.g. -2.25"></div>
+                        <div class="form-group"><label>CYL</label><input type="text" id="rx-l-cyl" placeholder="e.g. -0.50"></div>
+                        <div class="form-group"><label>AXIS</label><input type="text" id="rx-l-axis" placeholder="e.g. 175"></div>
+                        <div class="form-group"><label>ADD</label><input type="text" id="rx-l-add" placeholder="e.g. +1.00"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-heading-row"><h2 class="card-heading">Bill Items</h2>
+                        <button type="button" class="add-item-btn" onclick="addItemRow()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg> Add Item</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="items-table"><thead><tr><th class="th-sl">#</th><th class="th-name">Item / Description</th><th class="th-hsn">HSN/SAC</th><th class="th-qty">Qty</th><th class="th-rate">Rate (₹)</th><th class="th-disc">Disc%</th><th class="th-amt">Amount (₹)</th><th class="th-action"></th></tr></thead><tbody id="items-body"></tbody></table>
+                    </div>
+                </div>
+
+                <div class="bottom-row">
+                    <div class="card totals-card">
+                        <h2 class="card-heading">Summary</h2>
+                        <div class="totals-grid">
+                            <div class="total-row"><span>Subtotal</span><span id="subtotal">₹ 0.00</span></div>
+                            <div class="total-row gst-row" id="cgst-row" style="display:none;"><span>CGST (9%)</span><span id="cgst-amount">₹ 0.00</span></div>
+                            <div class="total-row gst-row" id="sgst-row" style="display:none;"><span>SGST (9%)</span><span id="sgst-amount">₹ 0.00</span></div>
+                            <div class="total-row grand-total"><span>Grand Total</span><span id="grand-total">₹ 0.00</span></div>
+                        </div>
+                        <!-- Advance/Balance (optical) -->
+                        <div class="payment-section hidden" id="payment-section">
+                            <hr class="divider">
+                            <div class="form-group" style="margin-top:0.8rem"><label for="advance-paid">Advance Paid (₹)</label><input type="number" id="advance-paid" min="0" step="0.01" value="0" oninput="recalculate()"></div>
+                            <div class="total-row balance-row"><span>Balance Due</span><span id="balance-due" class="balance-val">₹ 0.00</span></div>
+                            <div class="form-group"><label for="delivery-date">Delivery Date</label><input type="date" id="delivery-date" class="date-input"></div>
+                        </div>
+                    </div>
+                    <div class="actions-card">
+                        <button type="button" class="btn btn-generate" onclick="generatePDF()"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg> Print Bill</button>
+                        <button type="button" class="btn btn-reset" onclick="resetForm()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 105.56-12.44L1 10"/></svg> Reset Form</button>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <!-- ═══ ORDERS ═══ -->
+        <main class="container hidden" id="orders-view">
+            <header class="page-header"><h1>Spectacle Orders</h1><p class="subtitle">Track orders from placement to delivery</p></header>
+            <div class="inv-tabs">
+                <button class="inv-tab active" id="ord-tab-all" onclick="setOrdTab('all')">All Orders</button>
+                <button class="inv-tab" id="ord-tab-ordered" onclick="setOrdTab('ordered')">⏳ Ordered</button>
+                <button class="inv-tab" id="ord-tab-ready" onclick="setOrdTab('ready')">✅ Ready</button>
+                <button class="inv-tab" id="ord-tab-delivered" onclick="setOrdTab('delivered')">📦 Delivered</button>
+            </div>
+            <div id="orders-list"></div>
+            <div class="empty-state hidden" id="orders-empty"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><p>No orders found</p></div>
+        </main>
+
+        <!-- ═══ CUSTOMERS ═══ -->
+        <main class="container hidden" id="customers-view">
+            <header class="page-header"><h1>Customer Ledger</h1><p class="subtitle">Track customers, payments & dues</p></header>
+            <div class="card">
+                <div class="history-toolbar">
+                    <div class="search-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="cust-search" placeholder="Search customers..." oninput="filterCustomers()"></div>
+                    <div class="inv-stats"><span class="inv-stat" id="cust-total-count">0 customers</span><span class="inv-stat-divider">·</span><span class="inv-stat balance-val" id="cust-total-due">₹ 0</span><span class="inv-stat-label">total dues</span></div>
+                </div>
+                <div class="table-wrapper">
+                    <table class="history-table" id="cust-table"><thead><tr><th>#</th><th>Name</th><th>Phone</th><th>Orders</th><th>Total Due (₹)</th><th>Actions</th></tr></thead><tbody id="cust-body"></tbody></table>
+                </div>
+                <div class="empty-state hidden" id="cust-empty"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><p>No customers yet</p></div>
+            </div>
+        </main>
+
+        <!-- ═══ HISTORY ═══ -->
+        <main class="container hidden" id="history-view">
+            <header class="page-header"><h1>Bill History</h1><p class="subtitle">Download or reprint previously generated invoices</p></header>
+            <div class="card">
+                <div class="history-toolbar">
+                    <div class="search-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="search-input" placeholder="Search by Bill No, Customer Name..." oninput="filterHistory()"></div>
+                    <div class="sales-counter" id="today-sales">Today's Sales: ₹ 0.00</div>
+                    <button class="btn btn-clear-history" onclick="clearHistory()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Clear All</button>
+                </div>
+                <div class="table-wrapper"><table class="history-table" id="history-table"><thead><tr><th>Bill No</th><th>Date</th><th>Customer</th><th>Category</th><th>GST</th><th>Total</th><th>Due</th><th>Actions</th></tr></thead><tbody id="history-body"></tbody></table></div>
+                <div class="empty-state hidden" id="empty-state"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg><p>No bills found</p></div>
+            </div>
+        </main>
+
+        <!-- ═══ INVENTORY ═══ -->
+        <main class="container hidden" id="inventory-view">
+            <header class="page-header"><h1>Inventory Management</h1><p class="subtitle">Manage stock for medical & optical items</p></header>
+            <div class="inv-tabs">
+                <button class="inv-tab active" id="inv-tab-medical" onclick="setInvTab('medical')">Medical Stock</button>
+                <button class="inv-tab" id="inv-tab-optical" onclick="setInvTab('optical')">Optical Stock</button>
+            </div>
+            <div class="card inv-add-card"><h2 class="card-heading">Add New Item to Stock</h2>
+                <div class="inv-add-grid">
+                    <div class="form-group"><label for="inv-name">Item Name <span class="req">*</span></label><input type="text" id="inv-name" placeholder="e.g. Paracetamol 500mg"></div>
+                    <div class="form-group"><label for="inv-hsn">HSN/SAC</label><input type="text" id="inv-hsn" placeholder="e.g. 3004"></div>
+                    <div class="form-group"><label for="inv-qty">Quantity <span class="req">*</span></label><input type="number" id="inv-qty" min="0" placeholder="0"></div>
+                    <div class="form-group"><label for="inv-rate">Rate (₹) <span class="req">*</span></label><input type="number" id="inv-rate" min="0" step="0.01" placeholder="0.00"></div>
+                    <div class="form-group"><label for="inv-batch">Batch No.</label><input type="text" id="inv-batch" placeholder="e.g. BT2026A"></div>
+                    <div class="form-group"><label for="inv-expiry">Expiry Date</label><input type="date" id="inv-expiry"></div>
+                    <div class="form-group inv-add-action"><button type="button" class="btn btn-generate" onclick="addInventoryItem()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg> Add to Stock</button></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="history-toolbar">
+                    <div class="search-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="inv-search" placeholder="Search inventory..." oninput="filterInventory()"></div>
+                    <div class="inv-stats"><span class="inv-stat" id="inv-total-items">0 items</span><span class="inv-stat-divider">·</span><span class="inv-stat" id="inv-total-value">₹ 0</span><span class="inv-stat-label">stock value</span></div>
+                </div>
+                <div class="table-wrapper"><table class="history-table inv-table" id="inv-table"><thead><tr><th>#</th><th>Item Name</th><th>HSN</th><th>Qty</th><th>Rate (₹)</th><th>Batch</th><th>Expiry</th><th>Value (₹)</th><th>Actions</th></tr></thead><tbody id="inv-body"></tbody></table></div>
+                <div class="empty-state hidden" id="inv-empty-state"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg><p>No items in stock</p></div>
+            </div>
+            <!-- Edit Modal -->
+            <div class="modal-overlay hidden" id="inv-edit-modal"><div class="modal-card"><div class="modal-header"><h2 class="card-heading">Edit Item</h2><button class="modal-close" onclick="closeEditModal()">&times;</button></div>
+                <div class="inv-add-grid">
+                    <div class="form-group"><label>Item Name</label><input type="text" id="edit-inv-name"></div>
+                    <div class="form-group"><label>HSN/SAC</label><input type="text" id="edit-inv-hsn"></div>
+                    <div class="form-group"><label>Quantity</label><input type="number" id="edit-inv-qty" min="0"></div>
+                    <div class="form-group"><label>Rate (₹)</label><input type="number" id="edit-inv-rate" min="0" step="0.01"></div>
+                    <div class="form-group"><label>Batch No.</label><input type="text" id="edit-inv-batch"></div>
+                    <div class="form-group"><label>Expiry Date</label><input type="date" id="edit-inv-expiry"></div>
+                </div><input type="hidden" id="edit-inv-id">
+                <div class="modal-actions"><button class="btn btn-reset" onclick="closeEditModal()">Cancel</button><button class="btn btn-generate" onclick="saveEditItem()">Save Changes</button></div>
+            </div></div>
+        </main>
+
+        <!-- ═══ DATABASE VIEWER ═══ -->
+        <main class="container hidden" id="database-view">
+            <header class="page-header"><h1>Database Viewer</h1><p class="subtitle">Browse all data in spreadsheet format · Export to CSV</p></header>
+            <div class="inv-tabs">
+                <button class="inv-tab active" id="db-tab-customers" onclick="setDbTab('customers')">👥 Customers</button>
+                <button class="inv-tab" id="db-tab-bills" onclick="setDbTab('bills')">🧾 Bills</button>
+                <button class="inv-tab" id="db-tab-medical" onclick="setDbTab('medical')">💊 Medical Stock</button>
+                <button class="inv-tab" id="db-tab-optical" onclick="setDbTab('optical')">👓 Optical Stock</button>
+                <button class="inv-tab" id="db-tab-orders" onclick="setDbTab('orders')">📦 Orders</button>
+            </div>
+            <div class="card">
+                <div class="history-toolbar">
+                    <div class="search-box"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="db-search" placeholder="Search database..." oninput="filterDatabase()"></div>
+                    <div class="inv-stats">
+                        <span class="inv-stat" id="db-stats">0 records</span>
+                        <span class="inv-stat-divider">·</span>
+                        <button class="btn-export" onclick="exportCSV()"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Export CSV</button>
+                    </div>
+                </div>
+                <div id="db-table-container"></div>
+            </div>
+        </main>
+
+    </div>
+
+    <!-- Print iframe -->
+    <iframe id="print-frame" style="display:none;position:absolute;width:0;height:0;border:none;"></iframe>
+
+    <div class="toast hidden" id="toast"><span id="toast-msg"></span></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script src="app.js"></script>
+    <script src="features.js"></script>
+    <script src="database.js"></script>
+</body>
+</html>

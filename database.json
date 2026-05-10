@@ -1,0 +1,108 @@
+{
+  "bills": [
+    {
+      "id": "PO20263398",
+      "date": "2026-05-10",
+      "category": "medical",
+      "gst": false,
+      "customer": {
+        "name": "Debug Customer",
+        "phone": "9999999999",
+        "address": ""
+      },
+      "items": [
+        {
+          "name": "Debug Item",
+          "hsn": "",
+          "qty": 1,
+          "rate": 250,
+          "disc": 0,
+          "amt": 250
+        }
+      ],
+      "rx": null,
+      "advance": 0,
+      "deliveryDate": "",
+      "total": 250,
+      "balance": 250,
+      "createdAt": "2026-05-10T14:34:08.459Z"
+    },
+    {
+      "id": "PO20263105",
+      "date": "2026-05-10",
+      "category": "medical",
+      "gst": false,
+      "customer": {
+        "name": "Debug Customer",
+        "phone": "9999999999",
+        "address": ""
+      },
+      "items": [
+        {
+          "name": "Debug Item",
+          "hsn": "",
+          "qty": 1,
+          "rate": 250,
+          "disc": 0,
+          "amt": 250
+        }
+      ],
+      "rx": null,
+      "advance": 0,
+      "deliveryDate": "",
+      "total": 250,
+      "balance": 250,
+      "createdAt": "2026-05-10T14:33:43.350Z"
+    }
+  ],
+  "customers": [
+    {
+      "id": "Cmozvia47",
+      "name": "Debug Customer",
+      "phone": "9999999999",
+      "address": "",
+      "bills": [
+        {
+          "billId": "PO20263105",
+          "total": 250,
+          "balance": 250,
+          "date": "2026-05-10"
+        },
+        {
+          "billId": "PO20263398",
+          "total": 250,
+          "balance": 250,
+          "date": "2026-05-10"
+        }
+      ],
+      "totalDue": 500,
+      "createdAt": "2026-05-10T14:33:43.351Z"
+    }
+  ],
+  "orders": [],
+  "inventory": {
+    "medical": [
+      {
+        "id": "mozw44jcg8vx",
+        "name": "Paracetamol 500mg",
+        "hsn": "3004",
+        "qty": 50,
+        "rate": 15.5,
+        "batch": "",
+        "expiry": "",
+        "addedAt": "2026-05-10T14:50:42.552Z"
+      },
+      {
+        "id": "mozw4cw9veon",
+        "name": "Pantoprazole 40mg",
+        "hsn": "3004",
+        "qty": 30,
+        "rate": 45,
+        "batch": "",
+        "expiry": "",
+        "addedAt": "2026-05-10T14:50:53.385Z"
+      }
+    ],
+    "optical": []
+  }
+}
